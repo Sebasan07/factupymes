@@ -16,9 +16,9 @@
 		
 		<properties>
 			<property name="javax.persistence.jdbc.url"
-				value="jdbc:mysql://localhost:3306/facturacion_electronica?serverTimezone=UTC" />
-			<property name="javax.persistence.jdbc.user" value="root" />
-			<property name="javax.persistence.jdbc.password" value="1234" />
+				value="jdbc:mysql://ubdezevvhfrw13ic:gsu4EhmM1VPhrP4qyq7u@bergufejqbv2iexpoe3u-mysql.services.clever-cloud.com:3306/bergufejqbv2iexpoe3u?serverTimezone=UTC" />
+			<property name="javax.persistence.jdbc.user" value="ubdezevvhfrw13ic" />
+			<property name="javax.persistence.jdbc.password" value="gsu4EhmM1VPhrP4qyq7u" />
 			<property name="javax.persistence.jdbc.driver"
 				value="com.mysql.jdbc.Driver" />
 			<property name="hibernate.dialect"
