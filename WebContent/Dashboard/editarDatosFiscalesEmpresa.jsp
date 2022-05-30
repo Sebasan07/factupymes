@@ -193,7 +193,7 @@ $(document).ready(function() {
 					<!--CARDS -->
 					<div class="container">
 						<form
-							action="<%=request.getContextPath()%>/inicio/empresa/agregar/validar"
+							action="<%=request.getContextPath()%>/inicio/empresa/editar/validar"
 							method="post">
 							<div class="user-details">
 								<%

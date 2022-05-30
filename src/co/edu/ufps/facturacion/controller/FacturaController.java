@@ -186,12 +186,14 @@ public class FacturaController extends HttpServlet {
 		Factura fa = new Factura((byte) 1, fecha,obtenerFecha(fecha), em.getNombreRepresentante(), descuento, subtotal, total,totalIva, cl, em, rg);
 		fa.generarCufe();
 
+		
+		
 		List<Articulo> articulos = capturarValores(request,response, fa);
 		ec.enviarCorreo(ff.toString(), f, cl, fa, articulos, rg);
-		
-		fDAO.insert(fa);
+		fa.setEmpresa(em);
 		rg.setNumeroActual(rg.getNumeroActual()+1);
-		rgDAO.update(rg);
+		rg.setEmpresa(em);
+		fDAO.insert(fa);
 	}
 
 	protected List<Articulo> capturarValores(HttpServletRequest request, HttpServletResponse response, Factura fa) throws ServletException, IOException {
@@ -204,8 +206,8 @@ public class FacturaController extends HttpServlet {
 			DetalleFactura df =new DetalleFactura(a.getCantidad());
 			fa.addDetalleFactura(df);
 			a.getProducto().addDetalleFactura(df);
-			dfDAO.insert(df);
-			pDAO.update(a.getProducto());
+			new DetalleFacturaDAO().insert(df);
+			new ProductoDAO().update(a.getProducto());
 			articulos.add(a);
 		}
 		return articulos.isEmpty()?null:articulos;

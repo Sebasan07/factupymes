@@ -139,19 +139,17 @@ public class EmpresaController extends HttpServlet {
 		System.out.println(n);
 		int nit = Integer.parseInt(n);
 		Empresa e =eDAO.find(nit);
-		
+		System.out.println(e);
 		if (e != null) {
 			e.setNumeroDocumento(request.getParameter("documento"));
 			e.setRazonSocial(request.getParameter("razonSocial"));
 			e.setDireccion(request.getParameter("direccion"));
 			e.setDepartamento(request.getParameter("departamento"));
-			e.setMunicipio(request.getParameter("municipio"));
+			if(request.getParameter("municipio")!=null) {e.setMunicipio(request.getParameter("municipio"));}
 			e.setCorreoEmpresa(request.getParameter("correo"));
 			e.setTelefono(request.getParameter("telefono"));
 			e.setNombreRepresentante(request.getParameter("nombreRepresentante"));
-
-			TipoDocumento tipo = tDAO.find(Integer.parseInt(request.getParameter("tipoDocumento")));
-			e.setTipoDocumentoBean(tipo);
+			e.setDocumento(request.getParameter("documento"));			
 			
 			eDAO.update(e);
 

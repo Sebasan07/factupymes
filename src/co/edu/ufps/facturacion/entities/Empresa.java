@@ -3,6 +3,9 @@ package co.edu.ufps.facturacion.entities;
 import java.io.Serializable;
 import javax.persistence.*;
 
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -46,6 +49,7 @@ public class Empresa implements Serializable {
 	private String telefono;
 
 	//bi-directional many-to-one association to ClienteEmpresa
+	@LazyCollection(LazyCollectionOption.FALSE)
 	@OneToMany(mappedBy="empresa")
 	private List<ClienteEmpresa> clienteEmpresas;
 
@@ -55,6 +59,7 @@ public class Empresa implements Serializable {
 	private TipoDocumento tipoDocumentoBean;
 
 	//bi-directional many-to-one association to Factura
+	@LazyCollection(LazyCollectionOption.FALSE)
 	@OneToMany(mappedBy="empresa")
 	private List<Factura> facturas;
 

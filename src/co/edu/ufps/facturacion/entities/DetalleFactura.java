@@ -21,7 +21,7 @@ public class DetalleFactura implements Serializable {
 	private int cantidad;
 
 	//bi-directional many-to-one association to Factura
-	@ManyToOne
+	@ManyToOne(cascade = {CascadeType.ALL})
 	private Factura factura;
 
 	//bi-directional many-to-one association to Producto
