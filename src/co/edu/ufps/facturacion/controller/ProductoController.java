@@ -60,7 +60,8 @@ public class ProductoController extends HttpServlet {
 
 		if (path.contains("/validar")) {
 			verProductoCRUD(request, response, path);
-			response.sendRedirect(request.getContextPath() + "/inicio/producto/ver");
+			request.getRequestDispatcher("/inicio/producto/ver").forward(request, response);
+			
 			return;
 		} else {
 			Empresa e = request.getSession().getAttribute("empresa") != null

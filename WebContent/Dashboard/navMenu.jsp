@@ -54,10 +54,17 @@
 
 				<a class="collapse-item "
 					href="<%=request.getContextPath()%>/inicio/producto/ver">Ver
-					productos</a> <a class="collapse-item"
+					productos</a> 
+				
+				<% 
+				Usuario us = (Usuario)request.getSession().getAttribute("usuario");
+								
+				if(!us.getRolUsuarioBean().getRolUsuario().equals("Contador")){
+				%>
+				<a class="collapse-item"
 					href="<%=request.getContextPath()%>/inicio/producto/agregar">Agregar
 					producto</a>
-
+			<% }%>
 			</div>
 		</div></li>
 
@@ -73,9 +80,14 @@
 				<h6 class="collapse-header">Opciones</h6>
 				<a class="collapse-item"
 					href="<%=request.getContextPath()%>/inicio/cliente/ver">Ver
-					clientes</a> <a class="collapse-item"
+					clientes</a> 
+				<% if(us.getRolUsuarioBean().getRolUsuario().equals("Administrador") || 
+						us.getRolUsuarioBean().getRolUsuario().equals("Vendedor")){
+				%>	
+				<a class="collapse-item"
 					href="<%=request.getContextPath()%>/inicio/cliente/agregar">Agregar
 					cliente</a>
+					<%} %>
 			</div>
 		</div></li>
 
@@ -95,11 +107,22 @@
 
 				<a class="collapse-item"
 					href="<%=request.getContextPath()%>/inicio/factura/ver">Ver
-					facturas</a> <a class="collapse-item"
+					facturas</a> 
+					
+					<%if(us.getRolUsuarioBean().getRolUsuario().equals("Administrador") ||
+							us.getRolUsuarioBean().getRolUsuario().equals("Vendedor")){
+					%>
+					<a class="collapse-item"
 					href="<%=request.getContextPath()%>/inicio/factura/agregar">Emitir
-					factura</a> <a class="collapse-item"
+					factura</a>
+					<% }%>
+					
+					<%if(us.getRolUsuarioBean().getRolUsuario().equals("Administrador")){
+					%>
+					<a class="collapse-item"
 					href="<%=request.getContextPath()%>/inicio/factura/rango">Rangos
 					de numeración</a>
+					<%} %>
 			</div>
 		</div></li>
 	<!-- Divider -->

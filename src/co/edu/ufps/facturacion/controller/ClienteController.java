@@ -66,7 +66,7 @@ public class ClienteController extends HttpServlet {
 
 		if (path.contains("validar")) {
 			verClienteCRUD(request, response, path);
-			response.sendRedirect(request.getContextPath() + "/inicio/cliente/ver");
+			request.getRequestDispatcher("/inicio/cliente/ver").forward(request, response);
 		} else {
 			switch (path) {
 			case "ver":
@@ -141,14 +141,17 @@ public class ClienteController extends HttpServlet {
 			if (c == null) {
 				c = new Cliente(documento, municipio, contribuyente, correo, departamento, direccion, (byte) 1, nombre,
 						nombreComercial, pais, regimen, telefono, tipo);
-				existe = true;
+			}else if(c.getEstado()==0) {
+				request.setAttribute("mensaje", "Se cambió de estado no disponible a disponible al cliente con documento: " + documento);
+				return;
+			}else{
+				request.setAttribute("mensaje", "Ya existe el cliente con documento: " + documento);
+				return;
 			}
 			ClienteEmpresa cl=new ClienteEmpresa(c,e);
 
 			e.addClienteEmpresa(cl);
-			if (!existe) {
-				cDAO.insert(c);
-			}
+			cDAO.insert(c);
 			new ClienteEmpresaDAO().insert(cl);
 			new EmpresaDAO().update(e);
 			/*

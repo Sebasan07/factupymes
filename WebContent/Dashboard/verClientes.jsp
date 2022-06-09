@@ -103,6 +103,10 @@
 
 					<!-- Page Heading -->
 					<h1 class="title_client">Clientes</h1>
+					<%if(request.getAttribute("mensaje")!=null){%>
+							
+							<p style="color:red"><%=request.getAttribute("mensaje") %></p>
+						<% }%> 
 					<!-- DataTales Example -->
 					<div class="card shadow mb-4">
 						<div class="card-body">

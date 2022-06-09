@@ -224,6 +224,9 @@
 					<!--end de cartas-->
 
 					<!--Inicio de parte de la empresa -->
+					<%
+						if(us.getRolUsuarioBean().getRolUsuario().equals("Administrador")){
+					%>
 					<div class="col-lg-6">
 						<div class="card shadow mb-4">
 							<div class="card-header py-3">
@@ -238,6 +241,7 @@
 							</div>
 						</div>
 					</div>
+					<%} %>
 					<!--Fin de parte de la empresa -->
 				</div>
 				<!-- /FIN-->
